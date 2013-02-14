@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans	xmlns="http://www.springframework.org/schema/beans"
+		xmlns:context="http://www.springframework.org/schema/context"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xsi:schemaLocation="http://www.springframework.org/schema/beans
+							http://www.springframework.org/schema/beans/spring-beans.xsd
+							http://www.springframework.org/schema/context
+							http://www.springframework.org/schema/context/spring-context.xsd">
+	<context:property-placeholder location="classpath:/jdbc.properties"/>
+	
+	<bean id="dataInserter" class="com.toastedbits.vote.datainserter.DataInserter">
+		<property name="dataSource" ref="dataSource"/>
+		<property name="unmarshaller" ref="xstreamMarshaller"/>
+	</bean>
+	
+	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="${jdbc.driverClassName}"/>
+		<property name="url" value="jdbc:${jdbc.vendor}://${jdbc.hostname}:${jdbc.port}/${jdbc.database}"/>
+		<property name="username" value="${jdbc.username}"/>
+		<property name="password" value="${jdbc.password}"/>
+	</bean>
+	
+	<bean id="xstreamMarshaller" class="org.springframework.oxm.xstream.XStreamMarshaller">
+		<property name="annotatedClasses">
+			<list>
+				<value>gov.senate.rollcallvote.RollCallVote</value>
+				<value>gov.senate.votesummary.VoteSummary</value>
+			</list>
+		</property>
+	</bean>
+</beans>
