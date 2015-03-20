@@ -8,3 +8,9 @@
 target
 data/votemenus
 data/1*
+build/
+bin/
+.settings/
+.classpath
+.project
+.gradle/

@@ -1,6 +1,5 @@
 #!/bin/bash
 
-
 #### If in need of forceful/inconsiderate scraping - use this as your .wgetrc ####
 #robots = off
 #referer = "http://www.google.com"
@@ -23,4 +22,3 @@ do
 	wget -P votemenus "http://www.senate.gov/legislative/LIS/roll_call_lists/vote_menu_${roleCall}_1.xml"
 	wget -P votemenus "http://www.senate.gov/legislative/LIS/roll_call_lists/vote_menu_${roleCall}_2.xml"
 done
-
